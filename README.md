@@ -1,12 +1,54 @@
-# sosyal-ag-analiz-sistemi
-Bu proje, C programlama dili kullanılarak geliştirilen bir sosyal ağ grafiği analiz sistemidir. Temel amacı, bir sosyal ağdaki kullanıcıların birbirleriyle olan ilişkilerini analiz edebilmek, belirli mesafelerdeki arkadaşlık bağlantılarını keşfetmek, ortak arkadaş sayılarını hesaplamak ve kullanıcıların dahil olduğu toplulukları belirleyebilmektir. Projede, kullanıcılar ve arkadaşlık ilişkileri kırmızı-siyah ağaç (Red-Black Tree) veri yapısı kullanılarak verimli bir şekilde temsil edilmiştir. Bu yapı sayesinde hem kullanıcı ekleme hem de arama işlemleri dengeli ve hızlı bir şekilde gerçekleştirilir.
+# Sosyal Ağ Grafiği Analiz Sistemi
+Bu proje, sosyal ağlardaki kullanıcılar ve arkadaşlık ilişkileri üzerine analizler yapabilen bir C uygulamasıdır. Kırmızı-siyah ağaç (Red-Black Tree) veri yapısını kullanarak kullanıcılar verimli bir şekilde saklanır ve arkadaşlık ilişkileri bağlı listeler ile modellenir. Uygulama, kullanıcının etki alanını, arkadaş mesafelerini, ortak arkadaşları ve topluluk yapılarını analiz edebilmektedir.
 
-Uygulama, başlangıçta veriseti.txt adlı bir dosyadan kullanıcı verilerini yükler. Dosya içinde USER <id> satırları kullanıcı tanımlarını, FRIEND <id1> <id2> satırları ise iki kullanıcı arasındaki arkadaşlık ilişkisini belirtir. Veriler yüklendikten sonra, kullanıcıdan analiz yapmak istediği bir kullanıcı ID’si alınır. Sistem, bu kullanıcının birinci ve ikinci derece arkadaşlarını sırasıyla tespit eder ve bu bilgileri ekrana yazdırır. Birinci derece arkadaşlar doğrudan bağlantıda olunan kullanıcıları, ikinci derece arkadaşlar ise dolaylı yoldan (arkadaşın arkadaşı) bağlantıda olunan kişileri ifade eder.
+## Özellikler
+- **Kırmızı-siyah ağaç ile kullanıcı yönetimi (ekleme, arama)**
 
-Analiz sürecinde, ayrıca kullanıcının "etkisi" de hesaplanır. Bu, kullanıcının içinde bulunduğu topluluğun büyüklüğü olarak tanımlanır. Topluluk, birbirine doğrudan ya da dolaylı yollarla bağlanmış tüm kullanıcıların kümesidir. Kullanıcının bağlı olduğu bu topluluğun diğer bireyleri derinlik öncelikli arama (DFS) yöntemiyle bulunur.
+-**Bağlı liste ile arkadaşlık ilişkilerinin modellenmesi**
 
-Kullanıcıdan ikinci bir ID girilmesi istenir ve girilen iki kullanıcı arasında varsa ortak arkadaşlar listelenir. Bu işlem, her iki kullanıcının arkadaş listelerinin karşılaştırılması yoluyla gerçekleştirilir. Ardından sistem, sosyal ağ içindeki tüm toplulukları analiz ederek ağ yapısını ortaya koyar. Topluluklar, bağlantılı bileşenler şeklinde bulunur ve her bir bileşen, kendi başına bir sosyal grup olarak değerlendirilir.
+- **Belirli bir kullanıcı için:
 
-Kodun yapısı, modüler ve okunabilir olacak şekilde tasarlanmıştır. Kullanıcı ekleme, arkadaşlık oluşturma, kırmızı-siyah ağaçta döndürme ve yeniden renklendirme işlemleri ayrı fonksiyonlarda tanımlanmıştır. Bellek yönetimi el ile gerçekleştirilmiş olup, her kullanıcıya ait arkadaş listeleri bağlı liste yapısı ile tutulmaktadır. Geliştiriciler, projeye kolayca yeni analiz fonksiyonları ekleyebilirler.
+ve 2. derece arkadaşların bulunması
 
-Bu proje; veri yapıları, algoritmalar, dosya okuma/yazma işlemleri ve kullanıcı etkileşimi konularında pratik yapmak isteyenler için kapsamlı bir örnek sunar. Özellikle sosyal ağ analizi ve graf teorisi konularında çalışan ya da bu alanda öğrenim gören öğrenciler için yararlı bir uygulamadır. Komut satırından kolayca çalıştırılabilen bu program, ileri düzey veri yapılarının gerçek dünya problemlerine nasıl uygulanabileceğini açıkça göstermektedir.
+Etki alanı (bağlı olduğu topluluğun büyüklüğü)
+
+İkinci bir kullanıcı ile ortak arkadaşların listelenmesi
+
+Sosyal ağ içerisindeki toplulukların (bağlı bileşenler) tespiti
+
+veriseti.txt dosyasından veri yükleme
+
+## Kullanım
+Program çalıştırıldığında, sizden analiz yapılacak bir kullanıcı ID’si girmeniz istenir. Ardından:
+
+Girilen kullanıcının 1. ve 2. derece arkadaşları yazdırılır.
+
+Etki alanı (bulunduğu topluluğun boyutu) hesaplanır.
+
+İkinci bir kullanıcı ID’si girilerek ortak arkadaşlar bulunur.
+
+Sosyal ağdaki tüm topluluklar listelenir.
+
+Örnek Çıktı
+yaml
+Kopyala
+Düzenle
+Arkadaslarini analiz etmek istediginiz kullanici ID'sini girin: 101
+Kullanici ID: 101
+Mesafe 1 arkadaslar: 102 103
+Mesafe 2 arkadaslar: 104 105
+Kullanici etkisi: 5
+Ortak arkadas analizi icin ikinci ID'yi girin: 105
+Ortak Arkadaslari Bulunan ID'ler (101 105):
+Ortak arkadas sayisi: 1
+Topluluk tespitine geciliyor:
+Topluluk: 101 102 103 104 105
+Dosya Yapısı
+sosyalag.c – Ana kaynak dosya
+
+veriseti.txt – Giriş verisi dosyası (kullanıcı ve arkadaşlık bilgileri)
+
+Gereksinimler
+C derleyicisi (GCC veya uyumlu bir derleyici)
+
+Standart C kütüphaneleri
