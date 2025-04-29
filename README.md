@@ -8,7 +8,7 @@ Kırmızı-siyah ağaç veri yapısı kullanarak sosyal ağ analizi yapan C uygu
   - Bağlı liste ile arkadaşlık ilişkileri
 
 - *Analiz Fonksiyonları*:
-  - 1. ve 2. derece arkadaş bulma
+  - Mesafe 1. ve 2. derece arkadaş bulma
   - Kullanıcı etki alanı hesaplama
   - Ortak arkadaş analizi
   - Topluluk (bağlı bileşen) tespiti
@@ -29,5 +29,5 @@ Kırmızı-siyah ağaç veri yapısı kullanarak sosyal ağ analizi yapan C uygu
 - Topluluk: 101 102 103 104 105
 
 ## Gereksinimler
-'C derleyicisi (GCC veya uyumlu bir derleyici)'
-'Standart C kütüphaneleri'
+`C derleyicisi (GCC veya uyumlu bir derleyici)`
+`Standart C kütüphaneleri`
